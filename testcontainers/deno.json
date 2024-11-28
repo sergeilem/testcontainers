@@ -1,8 +1,9 @@
 {
-  "name": "@valkyr/testcontainers",
+  "name": "@sergeilem/testcontainers",
   "version": "1.1.4",
   "exports": {
     ".": "./mod.ts",
-    "./postgres": "./containers/postgres.ts"
+    "./postgres": "./containers/postgres.ts",
+    "./mariadb": "./containers/mariadb.ts"
   }
 }
