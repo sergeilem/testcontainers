@@ -1,7 +1,0 @@
-{
-  "name": "@valkyr/drizzle",
-  "version": "1.0.3",
-  "exports": {
-    ".": "./mod.ts"
-  }
-}

@@ -1,14 +1,5 @@
 {
   "workspace": [
-    "./api",
-    "./auth",
-    "./drizzle",
-    "./event-emitter",
-    "./event-store",
-    "./inverse",
-    "./json-rpc",
-    "./process",
-    "./router",
     "./testcontainers"
   ],
   "imports": {
@@ -48,9 +39,8 @@
   },
   "tasks": {
     "lint": "npx eslint -c eslint.config.mjs .",
-    "test": "deno run -A .tasks/test.ts && deno test -A --unstable-ffi",
+    "test": "deno test -A --unstable-ffi",
     "test:publish": "deno publish --dry-run",
-    "generate": "deno run -A .tasks/generate.ts",
     "ncu": "npx ncu -u -p npm"
   }
 }

@@ -24,6 +24,7 @@
     "jsr:@std/path@^1.0.7": "1.0.7",
     "jsr:@std/testing@1.0.3": "1.0.3",
     "jsr:@std/text@1.0.8": "1.0.8",
+    "jsr:@valkyr/process@*": "1.0.0",
     "npm:@faker-js/faker@9.2.0": "9.2.0",
     "npm:@types/node@*": "22.5.4",
     "npm:@valkyr/db@1.0.1": "1.0.1",
@@ -33,9 +34,7 @@
     "npm:drizzle-orm@0.36.4": "0.36.4_postgres@3.4.4",
     "npm:eslint-plugin-simple-import-sort@12.1.1": "12.1.1_eslint@9.15.0",
     "npm:eslint@9.15.0": "9.15.0",
-    "npm:eventemitter3@5.0.1": "5.0.1",
     "npm:fake-indexeddb@6.0.0": "6.0.0",
-    "npm:history@5.3.0": "5.3.0",
     "npm:jose@5.9.6": "5.9.6",
     "npm:json-refs@3.0.15": "3.0.15",
     "npm:json-schema-to-zod@2.4.1": "2.4.1",
@@ -44,7 +43,6 @@
     "npm:postgres@3.4.4": "3.4.4",
     "npm:prettier@3.3.3": "3.3.3",
     "npm:typescript-eslint@8.15.0": "8.15.0_eslint@9.15.0_@typescript-eslint+parser@8.15.0__eslint@9.15.0",
-    "npm:urlpattern-polyfill@10.0.0": "10.0.0",
     "npm:zod-to-ts@1.2.0": "1.2.0_typescript@5.6.3_zod@3.23.8",
     "npm:zod@3.23.8": "3.23.8"
   },
@@ -136,15 +134,12 @@
     },
     "@std/text@1.0.8": {
       "integrity": "40ba34caa095f393e78796e5eda37b8b4e2cc6cfd6f51f34658ad7487b1451e4"
+    },
+    "@valkyr/process@1.0.0": {
+      "integrity": "d187e3ca4b163c835f1bd0036f548366d9b779d822e4dca1062266957987cfcb"
     }
   },
   "npm": {
-    "@babel/runtime@7.25.9": {
-      "integrity": "sha512-4zpTHZ9Cm6L9L+uIqghQX8ZXg8HKFcjYO3qHoO8zTmRm6HQUJ8SSJ+KRvbMBZn0EGVlT4DRYeQ/6hjlyXBh+Kg==",
-      "dependencies": [
-        "regenerator-runtime"
-      ]
-    },
     "@drizzle-team/brocli@0.10.2": {
       "integrity": "sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w=="
     },
@@ -827,9 +822,6 @@
     "esutils@2.0.3": {
       "integrity": "sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g=="
     },
-    "eventemitter3@5.0.1": {
-      "integrity": "sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA=="
-    },
     "fake-indexeddb@6.0.0": {
       "integrity": "sha512-YEboHE5VfopUclOck7LncgIqskAqnv4q0EWbYCaxKKjAvO93c+TJIaBuGy8CBFdbg9nKdpN3AuPRwVBJ4k7NrQ=="
     },
@@ -985,12 +977,6 @@
     },
     "hexoid@1.0.0": {
       "integrity": "sha512-QFLV0taWQOZtvIRIAdBChesmogZrtuXvVWsFHZTk2SU+anspqZ2vMnoLg7IE1+Uk16N19APic1BuF8bC8c2m5g=="
-    },
-    "history@5.3.0": {
-      "integrity": "sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==",
-      "dependencies": [
-        "@babel/runtime"
-      ]
     },
     "idb@7.1.1": {
       "integrity": "sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ=="
@@ -1236,9 +1222,6 @@
         "util-deprecate"
       ]
     },
-    "regenerator-runtime@0.14.1": {
-      "integrity": "sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw=="
-    },
     "require-from-string@2.0.2": {
       "integrity": "sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw=="
     },
@@ -1396,9 +1379,6 @@
         "punycode"
       ]
     },
-    "urlpattern-polyfill@10.0.0": {
-      "integrity": "sha512-H/A06tKD7sS1O1X2SshBVeA5FLycRpjqiBeqGKmBwBDBy28EnRjORxTNe269KSSr5un5qyWi1iL61wLxpd+ZOg=="
-    },
     "util-deprecate@1.0.2": {
       "integrity": "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="
     },
@@ -1461,19 +1441,6 @@
         "npm:zod-to-ts@1.2.0",
         "npm:zod@3.23.8"
       ]
-    },
-    "members": {
-      "event-emitter": {
-        "dependencies": [
-          "npm:eventemitter3@5.0.1"
-        ]
-      },
-      "router": {
-        "dependencies": [
-          "npm:history@5.3.0",
-          "npm:urlpattern-polyfill@10.0.0"
-        ]
-      }
     }
   }
 }
