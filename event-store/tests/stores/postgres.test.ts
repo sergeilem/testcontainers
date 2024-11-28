@@ -1,6 +1,6 @@
+import { PostgresTestContainer } from "@sergeilem/testcontainers/postgres";
 import { afterAll, afterEach, beforeAll, describe } from "@std/testing/bdd";
 import type { PostgresConnection } from "@valkyr/drizzle";
-import { PostgresTestContainer } from "@sergeilem/testcontainers/postgres";
 
 import { Projector } from "~libraries/projector.ts";
 import { PostgresEventStore } from "~stores/postgres/event-store.ts";
