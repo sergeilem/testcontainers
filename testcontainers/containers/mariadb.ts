@@ -20,7 +20,6 @@
 
 import { delay } from "@std/async/delay";
 import { getAvailablePort } from "@std/net";
-import { Client } from "https://deno.land/x/mysql/mod.ts";
 
 import type { Container } from "../docker/libraries/container.ts";
 import { docker } from "../mod.ts";
@@ -137,33 +136,6 @@ export class MariadbTestContainer {
    | Utilities
    |--------------------------------------------------------------------------------
    */
-
-  /**
-   * Create a new database with the given name.
-   *
-   * @param name - Name of the database to create.
-   */
-  async create(name: string): Promise<void> {
-    const client = await this.client("mysql");
-    await client.execute(`CREATE DATABASE IF NOT EXISTS ${name}`);
-    await client.close();
-  }
-
-  /**
-   * Get mariadb client instance for the current container.
-   *
-   * @param name    - Database name to connect to.
-   * @param options - Connection options to append to the URL.
-   */
-  async client(db: string): Promise<Client> {
-    return await new Client().connect({
-      hostname: this.host,
-      port: this.port,
-      username: this.username,
-      db,
-      password: this.password,
-    });
-  }
 
   /**
    * Return the connection URL for the Postgres container in the format:
