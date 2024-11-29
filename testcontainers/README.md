@@ -1,15 +1,31 @@
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/1998130/229430454-ca0f2811-d874-4314-b13d-c558de8eec7e.svg" />
-</p>
-
 # Test Containers
 
-Test container solution for running third party solutions through docker.
+Test container solution for running third party solutions through docker. 
+Forked from @valkyr/testcontainers.
 
-## Quick Start
+## Quick Start - MariaDB
 
 ```ts
-import { PostgresTestContainer } from "@valkyr/testcontainers/postgres";
+import { MariadbTestContainer } from "@sergeilem/testcontainers/mariadb";
+
+const DB_NAME = "test";
+
+const container = await MariadbTestContainer.start("yobasystems/alpine-mariadb", { port:3306, pass: 'test' } );
+
+await container.create(DB_NAME);
+const client = await container.client(DB_NAME);
+const res = await client.query("show databases");
+
+console.log(container.url("test")); // => mysql://root:test@127.0.0.1:5432/test
+
+await client.close();
+await container.stop();
+```
+
+## Quick Start - PostgreSQL
+
+```ts
+import { PostgresTestContainer } from "@sergeilem/testcontainers/postgres";
 
 const container = await PostgresTestContainer.start("postgres:16");
 

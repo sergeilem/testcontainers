@@ -7,12 +7,12 @@
  * ```ts
  * import { MariadbTestContainer } from "@sergeilem/testcontainers/Mariadb";
  *
- * const container = await MariadbTestContainer.start("Mariadb:16");
+ * const container = await MariadbTestContainer.start("yobasystems/alpine-mariadb");
  *
- * await container.create("db");
- * await container.client("db")`SELECT 1`;
+ * await container.create("test");
+ * await container.client("test")`SELECT 1`;
  *
- * console.log(container.url("db")); // => Mariadb://Mariadb:Mariadb@127.0.0.1:5432/db
+ * console.log(container.url("db")); // => mysql://mysql:test@127.0.0.1:5432/test
  *
  * await container.stop();
  * ```
@@ -20,6 +20,7 @@
 
 import { delay } from "@std/async/delay";
 import { getAvailablePort } from "@std/net";
+import { Client } from "https://deno.land/x/mysql/mod.ts";
 
 import type { Container } from "../docker/libraries/container.ts";
 import { docker } from "../mod.ts";
@@ -71,7 +72,7 @@ export class MariadbTestContainer {
    * MariadbQL password applied to the container.
    */
   get password(): string {
-    return this.#connection.pass;
+    return this.#connection.password;
   }
 
   /**
@@ -102,7 +103,7 @@ export class MariadbTestContainer {
 
     const container = await docker.createContainer({
       Image: image,
-      Env: [`MYSQL_USER=${config.user ?? "root"}`, `MYSQL_PASSWORD=${config.pass ?? ""}`],
+      Env: [`MYSQL_ROOT_PASSWORD=${config.password ?? ""}`],
       ExposedPorts: {
         "3306/tcp": {},
       },
@@ -120,7 +121,7 @@ export class MariadbTestContainer {
       host: config.host ?? "127.0.0.1",
       port,
       user: config.user ?? "root",
-      pass: config.pass ?? "",
+      password: config.password ?? "",
     });
   }
 
@@ -130,7 +131,56 @@ export class MariadbTestContainer {
   async stop(): Promise<void> {
     await this.container.remove({ force: true });
   }
+
+  /*
+   |--------------------------------------------------------------------------------
+   | Utilities
+   |--------------------------------------------------------------------------------
+   */
+
+  /**
+   * Create a new database with the given name.
+   *
+   * @param name - Name of the database to create.
+   */
+  async create(name: string): Promise<void> {
+    const client = await this.client("mysql");
+    await client.execute(`CREATE DATABASE IF NOT EXISTS ${name}`);
+    await client.close();
+  }
+
+  /**
+   * Get mariadb client instance for the current container.
+   *
+   * @param name    - Database name to connect to.
+   * @param options - Connection options to append to the URL.
+   */
+  async client(db: string): Promise<Client> {
+    return await new Client().connect({
+      hostname: this.host,
+      port: this.port,
+      username: this.username,
+      db,
+      password: this.password,
+    });
+  }
+
+  /**
+   * Return the connection URL for the Postgres container in the format:
+   * `postgres://${user}:${pass}@${host}:${port}/${database}`.
+   *
+   * Make sure to start the container before accessing this method or it will
+   * throw an error.
+   *
+   * @param name    - Name of the database to connect to.
+   * @param options - Connection options to append to the URL.
+   */
+  url(database_name: string): MariadbConnectionUrl {
+    return `mysql://${this.username}:${this.password}@${this.host}:${this.port}/${database_name}`;
+  }
 }
+
+// mysql -u root -ptest -e 'show databases;'
 
 /*
  |--------------------------------------------------------------------------------
@@ -138,9 +188,11 @@ export class MariadbTestContainer {
  |--------------------------------------------------------------------------------
  */
 
+type MariadbConnectionUrl = `mysql://${string}:${string}@${string}:${number}/${string}`;
+
 type MariadbConnectionInfo = {
   user: string;
-  pass: string;
+  password: string;
   host: string;
   port: number;
 };

@@ -5,7 +5,7 @@ import { PostgresTestContainer } from "../containers/postgres.ts";
 
 const DB_NAME = "sandbox";
 
-const container = await PostgresTestContainer.start("postgres:14");
+const container = await PostgresTestContainer.start("postgres:14", { port: 5432 });
 await container.create(DB_NAME);
 
 const sql = await container.client(DB_NAME);
