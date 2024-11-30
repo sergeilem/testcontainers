@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@valkyr/db": "1.0.1",
     "ajv": "8.17.1",
     "dot-prop": "9.0.0",
     "drizzle-kit": "0.28.1",
