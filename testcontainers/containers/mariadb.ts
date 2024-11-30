@@ -61,6 +61,13 @@ export class MariadbTestContainer {
   }
 
   /**
+   * Generic container internal port.
+   */
+  get internalHost(): string {
+    return this.#connection.internalHost;
+  }
+
+  /**
    * MariadbQL username applied to the container.
    */
   get username(): string {
@@ -116,8 +123,11 @@ export class MariadbTestContainer {
 
     await delay(250);
 
+    const internalHost = await container.ipAdddress() || "";
+
     return new MariadbTestContainer(container, {
       host: config.host ?? "127.0.0.1",
+      internalHost,
       port,
       user: config.user ?? "root",
       password: config.password ?? "",
@@ -166,5 +176,6 @@ type MariadbConnectionInfo = {
   user: string;
   password: string;
   host: string;
+  internalHost: string;
   port: number;
 };
