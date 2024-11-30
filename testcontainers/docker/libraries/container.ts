@@ -59,7 +59,7 @@ export class Container {
    *
    * @see https://docs.docker.com/engine/api/v1.45/#tag/Container/operation/ContainerInspect
    */
-  async inspect(): Promise<Record<string, never>> {
+  async inspect(): Promise<InspectResponse> {
     return modem.get({ path: `/containers/${this.id}/json` });
   }
 
@@ -104,6 +104,16 @@ export class Container {
   }
 
   /**
+   * Get container internal IP Address
+   *
+   * @see https://docs.docker.com/engine/api/v1.45/#tag/Container/operation/ContainerInspect
+   */
+  async ipAdddress(): Promise<string | undefined> {
+    const addr = (await this.inspect()).NetworkSettings.Networks.bridge?.IPAddress;
+    return addr;
+  }
+
+  /**
    * Waits for a specific log value to occur on the container within the given
    * timeout limit.
    *
@@ -140,4 +150,20 @@ type SignalQuery = {
    * An integer representing the number of seconds to wait before killing the container.
    */
   t?: number;
+};
+
+type InspectResponse = {
+  NetworkSettings: NetworkSettings;
+};
+
+type NetworkSettings = {
+  Networks: Network;
+};
+
+type Network = {
+  bridge?: NetworkContent;
+};
+
+type NetworkContent = {
+  IPAddress: string;
 };

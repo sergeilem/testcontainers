@@ -63,6 +63,13 @@ export class GenericTestContainer {
   }
 
   /**
+   * Generic container internal port.
+   */
+  get internalHost(): string {
+    return this.#connection.internalHost;
+  }
+
+  /**
    * Generic container port.
    */
   get waitForLog(): string {
@@ -114,10 +121,13 @@ export class GenericTestContainer {
 
     await delay(250);
 
+    const internalHost = await container.ipAdddress() || "";
+
     return new GenericTestContainer(container, {
       host: config.host ?? "127.0.0.1",
       port,
       env,
+      internalHost,
       internalPort,
       waitForLog,
     });
@@ -131,8 +141,6 @@ export class GenericTestContainer {
   }
 }
 
-// mysql -u root -ptest -e 'show databases;'
-
 /*
  |--------------------------------------------------------------------------------
  | Types
@@ -143,6 +151,7 @@ type GenericConnectionInfo = {
   host: string;
   port: number;
   env: string[];
+  internalHost: string;
   internalPort: number;
   waitForLog: string;
 };
