@@ -1,7 +1,16 @@
 # Test Containers
 
-Test container solution for running third party solutions through docker. 
-Forked from @valkyr/testcontainers.
+Test container solution for running third party solutions through docker. Forked from @valkyr/testcontainers.
+
+## Quick Start - Generic
+
+```ts
+import { GenericTestContainer } from "@sergeilem/testcontainers/generic";
+
+const config = { port: 15000, internalPort: 8080, waitForLog: "Ready" };
+const container = await GenericTestContainer.start("testcontainers/helloworld", config);
+await container.stop();
+```
 
 ## Quick Start - MariaDB
 
@@ -10,7 +19,7 @@ import { MariadbTestContainer } from "@sergeilem/testcontainers/mariadb";
 
 const DB_NAME = "test";
 
-const container = await MariadbTestContainer.start("yobasystems/alpine-mariadb", { port:3306, pass: 'test' } );
+const container = await MariadbTestContainer.start("yobasystems/alpine-mariadb", { port: 3306, pass: "test" });
 
 await container.create(DB_NAME);
 const client = await container.client(DB_NAME);

@@ -3,7 +3,7 @@ import { afterAll, describe, it } from "@std/testing/bdd";
 
 import { GenericTestContainer } from "../containers/generic.ts";
 
-const config = { port: 15000, internalPort: 8080, waitForLog: "Ready" };
+const config = { port: 15000, internalPort: 8080, waitForLog: "Ready", env: [] };
 const container = await GenericTestContainer.start("testcontainers/helloworld", config);
 
 await delay(250);

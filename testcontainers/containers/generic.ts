@@ -94,6 +94,7 @@ export class GenericTestContainer {
       throw new Error("Unable to wait for empty string");
     }
     const waitForLog = config.waitForLog;
+    const env = config.env ?? [];
 
     await docker.pullImage(image);
 
@@ -103,6 +104,7 @@ export class GenericTestContainer {
     PortBindings[internalPortTcp] = [{ HostIp: "0.0.0.0", HostPort: String(port) }];
     const container = await docker.createContainer({
       Image: image,
+      Env: env,
       ExposedPorts,
       HostConfig: { PortBindings },
     });
@@ -115,6 +117,7 @@ export class GenericTestContainer {
     return new GenericTestContainer(container, {
       host: config.host ?? "127.0.0.1",
       port,
+      env,
       internalPort,
       waitForLog,
     });
@@ -139,6 +142,7 @@ export class GenericTestContainer {
 type GenericConnectionInfo = {
   host: string;
   port: number;
+  env: string[];
   internalPort: number;
   waitForLog: string;
 };
