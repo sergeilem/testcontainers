@@ -3,7 +3,8 @@ import { afterAll, describe, it } from "@std/testing/bdd";
 
 import { GenericTestContainer } from "../containers/generic.ts";
 
-const container = await GenericTestContainer.start("bitnami/nginx", { port: 15000, internalPort: 80, waitForLog: "Starting NGINX" });
+const config = { port: 15000, internalPort: 80, waitForLog: "start worker" };
+const container = await GenericTestContainer.start("nginx", config);
 
 await delay(250);
 
