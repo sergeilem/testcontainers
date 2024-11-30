@@ -110,7 +110,7 @@ export class Container {
    * @param value   - Value to look for.
    * @param timeout - Time limit producing an error if exceeded.
    */
-  async waitForLog(value: string, timeout = 5_000): Promise<void> {
+  async waitForLog(value: string, timeout = 10_000): Promise<void> {
     const response = await this.logs({ follow: true, stdout: true, stderr: true });
     const timer = setTimeout(() => {
       throw new Error("Timed out waiting for log result");
