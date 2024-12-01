@@ -126,7 +126,7 @@ export class Container {
       throw new Error("Timed out waiting for log result");
     }, timeout);
     for await (const chunk of response.stream) {
-      console.log(chunk);
+      // console.log(chunk);
       if (chunk.includes(value)) {
         clearTimeout(timer);
         break;
