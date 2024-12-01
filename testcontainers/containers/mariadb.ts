@@ -61,7 +61,7 @@ export class MariadbTestContainer {
   }
 
   /**
-   * Generic container internal port.
+   * Generic container internal host.
    */
   get internalHost(): string {
     return this.#connection.internalHost;
@@ -123,7 +123,7 @@ export class MariadbTestContainer {
 
     await delay(250);
 
-    const internalHost = await container.ipAdddress() || "";
+    const internalHost = await container.ipAddress() || "";
 
     return new MariadbTestContainer(container, {
       host: config.host ?? "127.0.0.1",

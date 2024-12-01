@@ -63,7 +63,7 @@ export class GenericTestContainer {
   }
 
   /**
-   * Generic container internal port.
+   * Generic container internal hott.
    */
   get internalHost(): string {
     return this.#connection.internalHost;
@@ -121,7 +121,7 @@ export class GenericTestContainer {
 
     await delay(250);
 
-    const internalHost = await container.ipAdddress() || "";
+    const internalHost = "disabled"; //await container.ipAddress() || "";
 
     return new GenericTestContainer(container, {
       host: config.host ?? "127.0.0.1",

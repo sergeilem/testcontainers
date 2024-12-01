@@ -1,30 +1,38 @@
 {
   "version": "4",
   "specifiers": {
+    "jsr:@astral/astral@*": "0.4.9",
     "jsr:@db/sqlite@0.12.0": "0.12.0",
+    "jsr:@deno-library/progress@^1.5.1": "1.5.1",
     "jsr:@denosaurs/plug@1": "1.0.6",
     "jsr:@std/assert@0.217": "0.217.0",
     "jsr:@std/assert@0.221": "0.221.0",
     "jsr:@std/assert@1.0.6": "1.0.6",
     "jsr:@std/assert@^1.0.6": "1.0.6",
+    "jsr:@std/async@1": "1.0.7",
     "jsr:@std/async@1.0.7": "1.0.7",
     "jsr:@std/async@^1.0.5": "1.0.7",
     "jsr:@std/data-structures@^1.0.4": "1.0.4",
     "jsr:@std/encoding@0.221": "0.221.0",
     "jsr:@std/fmt@0.221": "0.221.0",
+    "jsr:@std/fmt@1.0.3": "1.0.3",
     "jsr:@std/fs@0.221": "0.221.0",
+    "jsr:@std/fs@1": "1.0.5",
     "jsr:@std/fs@1.0.5": "1.0.5",
     "jsr:@std/fs@^1.0.4": "1.0.5",
     "jsr:@std/internal@^1.0.4": "1.0.4",
+    "jsr:@std/io@0.225.0": "0.225.0",
     "jsr:@std/net@1.0.4": "1.0.4",
     "jsr:@std/path@0.217": "0.217.0",
     "jsr:@std/path@0.221": "0.221.0",
+    "jsr:@std/path@1": "1.0.7",
     "jsr:@std/path@1.0.7": "1.0.7",
     "jsr:@std/path@^1.0.6": "1.0.7",
     "jsr:@std/path@^1.0.7": "1.0.7",
     "jsr:@std/testing@1.0.3": "1.0.3",
     "jsr:@std/text@1.0.8": "1.0.8",
     "jsr:@valkyr/process@*": "1.0.0",
+    "jsr:@zip-js/zip-js@^2.7.52": "2.7.53",
     "npm:@faker-js/faker@9.2.0": "9.2.0",
     "npm:@types/node@*": "22.5.4",
     "npm:ajv@8.17.1": "8.17.1",
@@ -46,6 +54,16 @@
     "npm:zod@3.23.8": "3.23.8"
   },
   "jsr": {
+    "@astral/astral@0.4.9": {
+      "integrity": "8e62a10f6f43c0155647c2564fa2e6c1186e74285272b30d8bae4294326435ff",
+      "dependencies": [
+        "jsr:@deno-library/progress",
+        "jsr:@std/async@1",
+        "jsr:@std/fs@1",
+        "jsr:@std/path@1",
+        "jsr:@zip-js/zip-js"
+      ]
+    },
     "@db/sqlite@0.12.0": {
       "integrity": "dd1ef7f621ad50fc1e073a1c3609c4470bd51edc0994139c5bf9851de7a6d85f",
       "dependencies": [
@@ -53,11 +71,18 @@
         "jsr:@std/path@0.217"
       ]
     },
+    "@deno-library/progress@1.5.1": {
+      "integrity": "966611826b8bb27baae73ab1c4fa4317cd4edd2abb99750cd6f8488d22d5b121",
+      "dependencies": [
+        "jsr:@std/fmt@1.0.3",
+        "jsr:@std/io"
+      ]
+    },
     "@denosaurs/plug@1.0.6": {
       "integrity": "6cf5b9daba7799837b9ffbe89f3450510f588fafef8115ddab1ff0be9cb7c1a7",
       "dependencies": [
         "jsr:@std/encoding",
-        "jsr:@std/fmt",
+        "jsr:@std/fmt@0.221",
         "jsr:@std/fs@0.221",
         "jsr:@std/path@0.221"
       ]
@@ -86,6 +111,9 @@
     "@std/fmt@0.221.0": {
       "integrity": "379fed69bdd9731110f26b9085aeb740606b20428ce6af31ef6bd45ef8efa62a"
     },
+    "@std/fmt@1.0.3": {
+      "integrity": "97765c16aa32245ff4e2204ecf7d8562496a3cb8592340a80e7e554e0bb9149f"
+    },
     "@std/fs@0.221.0": {
       "integrity": "028044450299de8ed5a716ade4e6d524399f035513b85913794f4e81f07da286",
       "dependencies": [
@@ -101,6 +129,9 @@
     },
     "@std/internal@1.0.4": {
       "integrity": "62e8e4911527e5e4f307741a795c0b0a9e6958d0b3790716ae71ce085f755422"
+    },
+    "@std/io@0.225.0": {
+      "integrity": "c1db7c5e5a231629b32d64b9a53139445b2ca640d828c26bf23e1c55f8c079b3"
     },
     "@std/net@1.0.4": {
       "integrity": "2f403b455ebbccf83d8a027d29c5a9e3a2452fea39bb2da7f2c04af09c8bc852"
@@ -136,6 +167,9 @@
     },
     "@valkyr/process@1.0.0": {
       "integrity": "d187e3ca4b163c835f1bd0036f548366d9b779d822e4dca1062266957987cfcb"
+    },
+    "@zip-js/zip-js@2.7.53": {
+      "integrity": "acea5bd8e01feb3fe4c242cfbde7d33dd5e006549a4eb1d15283bc0c778ed672"
     }
   },
   "npm": {
@@ -1394,6 +1428,8 @@
     "https://deno.land/std@0.104.0/log/mod.ts": "91711789b28803082b1bdfb123d2c9685a7e01767f2e79c0a82706063ad964d8",
     "https://deno.land/std@0.104.0/testing/_diff.ts": "5d3693155f561d1a5443ac751ac70aab9f5d67b4819a621d4b96b8a1a1c89620",
     "https://deno.land/std@0.104.0/testing/asserts.ts": "e4311d45d956459d4423bc267208fe154b5294989da2ed93257b6a85cae0427e",
+    "https://deno.land/std@0.224.0/testing/_test_suite.ts": "f10a8a6338b60c403f07a76f3f46bdc9f1e1a820c0a1decddeb2949f7a8a0546",
+    "https://deno.land/std@0.224.0/testing/bdd.ts": "3e4de4ff6d8f348b5574661cef9501b442046a59079e201b849d0e74120d476b",
     "https://deno.land/std@0.77.0/fmt/colors.ts": "c5665c66f1a67228f21c5989bbb04b36d369b98dd7ceac06f5e26856c81c2531",
     "https://deno.land/x/bytes_formater@v1.4.0/deps.ts": "4f98f74e21145423b873a5ca6ead66dc3e674fa81e230a0a395f9b86aafeceea",
     "https://deno.land/x/bytes_formater@v1.4.0/format.ts": "657c41b9f180c3ed0f934dcf75f77b09b6a610be98bb07525bffe2acfd5af4d5",

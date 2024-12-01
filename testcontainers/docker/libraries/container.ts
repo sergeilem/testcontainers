@@ -108,7 +108,7 @@ export class Container {
    *
    * @see https://docs.docker.com/engine/api/v1.45/#tag/Container/operation/ContainerInspect
    */
-  async ipAdddress(): Promise<string | undefined> {
+  async ipAddress(): Promise<string | undefined> {
     const addr = (await this.inspect()).NetworkSettings.Networks.bridge?.IPAddress;
     return addr;
   }
@@ -126,6 +126,7 @@ export class Container {
       throw new Error("Timed out waiting for log result");
     }, timeout);
     for await (const chunk of response.stream) {
+      console.log(chunk);
       if (chunk.includes(value)) {
         clearTimeout(timer);
         break;

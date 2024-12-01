@@ -14,5 +14,8 @@ describe("Generic", () => {
   });
 
   it("should spin up a generic container", async () => {
+    await delay(500);
+    // const internalHost = container.internalHost;
+    // console.log(`Container internal host: ${internalHost}`);
   });
 });
